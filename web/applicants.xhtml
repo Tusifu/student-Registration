@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="dash.css"/>
+        <title>Applicants approval</title>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="header">
+                <div class="logo">
+                    <i class="fa fa-tachometer"></i>
+                    <span>Dashboard</span>
+                </div>
+                <h:button id="logoutBtn" value="logout" class="btn btn-success"/>
+                <a href="#" class="nav-trigger"><span></span></a>
+            </div>
+            <div class="side-nav">
+                <div class="logo">
+                    <i class="fa fa-tachometer"></i>
+                    <span>Approved students</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="registerDashboard.xhtml">
+                                <span><i class="pi pi-home"></i></span>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="createAcademicD.xhtml">
+
+                                <span><i class="pi pi-file"></i></span>
+                                <span>addMajors</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="createAddress.xhtml">
+                                <span><i class="fa fa-bar-chart"></i></span>
+                                <span>addAddress</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <span><i class="fa fa-credit-card-alt"></i></span>
+                                <span>Approve</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="approvedList.xhtml">
+                                <span><i class="fa fa-credit-card-alt"></i></span>
+                                <span>ApprovedStudents</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="main-content">
+                <div class="title" style="margin-top: 20px">
+                    approve Students
+                </div>
+                <div class="main" style="margin">
+                    <h:form class="form form-inline">
+                        <h:dataTable var="p" value="#{st.applicants}" border="1" cellspacing="2" cellpadding="2" class="table table-bordered table-striped">
+                            <h:column>
+                                <f:facet name="header">firstName</f:facet>
+                                <h:outputText value="#{p.firstName}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">lastName</f:facet>
+                                <h:outputText value="#{p.lastName}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">academicProgram</f:facet>
+                                <h:outputText value="#{p.academicProgram}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">gender</f:facet>
+                                <h:outputText value="#{p.gender}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Faculty</f:facet>
+                                <h:outputText value="#{p.department.faculty.name}"/>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Department</f:facet>
+                                <h:outputText value="#{p.department.name}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">District</f:facet>
+                                <h:outputText value="#{p.district.name}"/>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Approve</f:facet>
+                                <h:commandButton value="Approve" action="#{st.approve(p)}" class="btn btn-success"/>
+                                    
+                                <h:commandButton value="reject" action="#{st.reject(p)}" class="btn btn-danger" style="margin-left: 18px;"/>
+                                    
+
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>       
+                </div>
+            </div>
+        </div>  
+    </h:body>
+</html>
+

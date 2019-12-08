@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="background.css"/>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Register
+                </div>
+            </nav>
+            
+            <div class="thumbnail">
+                <h1 class="display-1">PREVIEW</h1>
+                <p class="lead">check if you have entered all info correctly</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    
+                    <h:form class="form form-horizontal">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="first name :" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.student.firstName}" style="margin: 5px"/>
+
+                            <h:outputLabel value="last name :" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.student.lastName}" style="margin: 5px"/>
+
+                            <h:outputLabel value="date of birth:" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.student.dateOfBirth}" style="margin: 5px">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:outputLabel>
+
+                            <h:outputLabel value="gender :" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.student.gender}" style="margin: 5px"/>
+
+                            <h:outputLabel value="status :" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.student.status}" style="margin: 5px"/>
+
+                            <h:outputLabel value="province :" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.provinceName}" style="margin: 5px"/>
+
+                            <h:outputLabel value="district :" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.districtName}" style="margin: 5px"/>
+
+                            <h:outputLabel value="Alevel school:" style="margin: 5px"/>
+                            <h:outputLabel value="#{ed.educationBackground.alevelSchool}" style="margin: 5px"/>
+
+                            <h:outputLabel value="olevel school:" style="margin: 5px"/>
+                            <h:outputLabel value="#{ed.educationBackground.olevelSchool}" style="margin: 5px"/>
+
+                            <h:outputLabel value="Faculty selected:" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.facultyName}" style="margin: 5px"/>
+
+                            <h:outputLabel value="Department:" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.departmentName}" style="margin: 5px"/>
+
+                            <h:outputLabel value="program selected:" style="margin: 5px"/>
+                            <h:outputLabel value="#{st.student.academicProgram}" style="margin: 5px"/>
+
+                        </h:panelGrid>
+                        <h:commandButton value="back" action="selectMajor" class="btn btn-success" style="margin-top: 58px;margin-right: 18px; padding: 5px 30px;"/>
+                            <h:commandButton value="apply" action="#{st.saveStudent()}" class="btn btn-info" style="margin-top: 58px; padding: 5px 50px">
+                                <p:messages showDetail="true" />
+                            </h:commandButton>
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px;">
+                            <span class="step"></span>
+                            <span class="step" ></span>
+                            <span class="step" ></span>
+                            <span class="step" style="background: green"></span>
+                        </div>
+                    </h:form>
+                    </div>
+                </div>
+            </div>
+      
+    </h:body>
+</html>
+

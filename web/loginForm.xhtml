@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="login.css"/>
+        <title>LoginForm</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <center>
+                <nav class="navbar navbar-inverse">
+                    <div class="navbar-brand">
+                        Register Login
+                    </div>
+                </nav>
+
+                <div class="thumbnail">
+                    <h1 class="display-1">Login form</h1>
+                    <p class="lead">please insert you credidentials to login</p>
+                </div>
+
+                <h:form class="form form-horizontal">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h1 id="head">login</h1>
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="email" class="control-label col-sm-2"/>
+                                <h:inputText value="#{re.email}" a:placeholder="email" class="form-control" style="margin: 8px;"/>
+                                <h:outputLabel value="password" class="control-label col-sm-2"/>
+                                <h:inputSecret value="#{re.password}" a:placeholder="password" class="form-control" style="margin: 8px;"/>    
+                            </h:panelGrid>
+                            <h:commandButton value="login" action="#{re.login()}" class="btn btn-success"/>
+                        </div>
+                    </div>
+                </h:form>
+            </center>
+        </div>
+    </h:body>
+</html>
+

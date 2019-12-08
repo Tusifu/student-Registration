@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="background.css"/>
+        <h:outputScript library="js" name="jsStyle.js"/>
+        <title>RegisterStudent</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Register
+                </div>
+            </nav>
+            <div class="thumbnail">
+                <h1 class="display-1">personal Details</h1>
+                <p class="lead">please fill your personal information</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h:form class="form-horizontal">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="FirstName" class="control-label col-sm-2"/>
+                            <h:inputText value="#{st.student.firstName}" class="form-control" style="margin: 5px" a:placeholder="first name"/>
+                            <h:outputLabel value="LastName" class="control-label col-sm-2"/>
+                            <h:inputText value="#{st.student.lastName}" class="form-control" style="margin: 5px" a:placeholder="last Name"/>
+                            <h:outputLabel value="dateofBirth" class="control-label col-sm-2" />
+                            <h:inputText value="#{st.student.dateOfBirth}" class="form-control" style="margin: 5px" a:placeholder="dd/mm/yyyy">
+                                <f:convertDateTime pattern="dd/MM/yyyy"/>
+                            </h:inputText>
+                            <h:outputLabel value="Gender" class="control-label col-sm-2"/>
+                            <h:selectOneRadio value="#{st.student.gender}" style="margin: 5px">
+                                <f:selectItems value="#{st.gender}" />
+                            </h:selectOneRadio>
+                            <h:outputLabel value="Status" class="control-label col-sm-2"/>
+                            <h:selectOneRadio value="#{st.student.status}" style="margin: 5px;">
+                                <f:selectItems value="#{st.status}" />
+                            </h:selectOneRadio>
+                        </h:panelGrid>
+                        <div class="thumbnail" style="margin-top: 40px;">
+                            <h1 class="display-1">Residence</h1>
+                            <p class="lead">choose the address (where you live)</p>
+                        </div>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Province" class="control-label col-sm-2"/>
+                            <h:selectOneMenu value="#{ad.provId}" class="form-control" style="margin: 5px" a:placeholder="first name">
+                                <f:selectItem noSelectionOption="true" itemLabel="(select province)"/>
+                                <f:selectItems value="#{ad.findAllProvince()}" var="p" itemValue="#{p.code}" itemLabel="#{p.name}"/>
+                                <f:ajax render="dist" listener="#{ad.districtInit}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="District" class="control-label col-sm-2"/>
+                            <h:selectOneMenu value="#{st.distid}" id="dist" class="form-control" style="margin: 5px" a:placeholder="first name">
+                                <f:selectItem noSelectionOption="true" itemLabel="(select District)"/>
+                                <f:selectItems value="#{ad.districts}" var="p" itemValue="#{p.code}" itemLabel="#{p.name}"/>
+                            </h:selectOneMenu>
+                            <h:commandButton value="next" action="EducationalBackground" class="btn btn-success" style="margin-top: 8px; padding: 5px 30px;float: right" onclick="nextPrev(1)"/>
+                        </h:panelGrid>
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px;">
+                            <span class="step" style="background: green"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

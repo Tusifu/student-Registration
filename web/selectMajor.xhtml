@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="background.css"/>
+        <title>Select Major and Minor</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Register
+                </div>
+            </nav>
+            <div class="thumbnail">
+                <h1 class="display-1">Select Major course</h1>
+                <p class="lead">select the Faculty and department you want to take</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h:form class="form-horizontal">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Faculty" class="control-label col-sm-2"/>
+                            <h:selectOneMenu value="#{ac.facId}" class="form-control" style="margin: 5px">
+                                <f:selectItem noSelectionOption="true" itemLabel="(select Faculty)"/>
+                                <f:selectItems value="#{ac.faculties}" var="p" itemValue="#{p.code}" itemLabel="#{p.name}"/>
+                                <f:ajax render="dep" listener="#{ac.departmentsInit()}"/>
+                            </h:selectOneMenu>
+                            <h:outputLabel value="Department" class="control-label col-sm-2"/>
+                            <h:selectOneMenu value="#{st.depid}" id="dep" class="form-control" style="margin: 5px">
+                                <f:selectItem noSelectionOption="true" itemLabel="(select Department)"/>
+                                <f:selectItems value="#{ac.departments}" var="p" itemValue="#{p.code}" itemLabel="#{p.name}"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <div class="thumbnail" style="margin-top: 50px">
+                            <h1 class="display-1">select program</h1>
+                            <p class="lead">choose the program you want to take </p>
+                        </div>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="academic programs" style="margin-right: 18px;"/>
+                            <h:selectOneRadio value="#{st.student.academicProgram}">
+                                <f:selectItems value="#{st.academicProgram}"/>
+                            </h:selectOneRadio>
+                        </h:panelGrid>
+                        <h:commandButton value="back" action="EducationalBackground"  class="btn btn-success" style="margin-top: 58px;margin-right: 18px; padding: 5px 30px;"/>
+                        <h:commandButton value="next" action="preview"  class="btn btn-success" style="margin-top: 58px; padding: 5px 30px;"/>
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px;">
+                            <span class="step"></span>
+                            <span class="step" ></span>
+                            <span class="step" style="background: green"></span>
+                            <span class="step"></span>
+                        </div>
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

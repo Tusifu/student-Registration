@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="background.css"/>
+        <title>Academic</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <nav class="navbar navbar-inverse">
+                <div class="navbar-brand">
+                    Register
+                </div>
+            </nav>
+            <div class="thumbnail">
+                <h1 class="display-1">Education Background</h1>
+                <p class="lead">secondary school info Olevel and Alevel</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <h:form class="form form-horizontal">
+                        <table class="table table-bordered">
+                            <thead>
+                                <th></th>
+                                <th>your secondary school</th>
+                                <th>year begun</th>
+                                <th>year completion</th>
+                            </thead>
+                            <tr>
+                                <td>1</td>
+                                <td><h:inputText value="#{ed.educationBackground.olevelSchool}" class="form-control"  a:placeholder="Olevel school name"/></td>
+                                <td><h:inputText value="#{ed.educationBackground.olevelStartYear}" class="form-control" /></td>
+                                <td><h:inputText value="#{ed.educationBackground.olevelEndYear}" class="form-control"/></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><h:inputText value="#{ed.educationBackground.alevelSchool}" class="form-control"  a:placeholder="Alevel school name"/></td>
+                                <td><h:inputText value="#{ed.educationBackground.alevelStartYear}" class="form-control"/></td>
+                                <td><h:inputText value="#{ed.educationBackground.alevelEndYear}" class="form-control"/></td>
+                            </tr>
+                        </table>
+                        <h3>enter the section you took in Alevel</h3>
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="section name" style="margin-right: 10px;"/>
+                            <h:inputText value="#{ed.educationBackground.acourseTaken}" class="form-control"/>
+                        </h:panelGrid>
+                        <h3>Higher learning institution attended</h3>
+                        <table class="table table-bordered">
+                            <thead>
+                                <th></th>
+                                <th>your institution</th>
+                                <th>year begun</th>
+                                <th>year completion</th>
+                            </thead>
+                            <tr>
+                                <td>1</td>
+                                <td><h:inputText value="#{ed.educationBackground.instituteName}" class="form-control" a:placeholder="instituteName"/></td>
+                                <td><h:inputText value="#{ed.educationBackground.instituteStartYear}" class="form-control"/></td>
+                                <td><h:inputText value="#{ed.educationBackground.instituteEndYear}" class="form-control"/></td>
+                            </tr>
+                        </table>
+                        <br></br>
+                        <h:commandButton value="back" action="StudentReg" class="btn btn-success" style="margin-top: 8px;margin-right: 18px; padding: 5px 30px;"/>
+                        <h:commandButton value="next" action="#{ed.gotoSelectMojor()}" class="btn btn-success" style="margin-top: 8px; padding: 5px 30px;"/>
+
+                        <!-- Circles which indicates the steps of the form: -->
+                        <div style="text-align:center;margin-top:40px;">
+                            <span class="step"></span>
+                            <span class="step" style="background: green"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+                        </div>
+
+                    </h:form>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+

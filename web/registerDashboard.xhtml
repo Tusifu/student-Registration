@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <h:outputStylesheet library="css" name="dash.css"/>
+        <title>Dashboard</title>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+            <div class="header">
+                <div class="logo">
+                    <i class="fa fa-tachometer"></i>
+                    <span>Dashboard</span>
+                </div>
+                <a href="loginForm.xhtml"><button id="logoutBtn" class="btn btn-success">logout</button>></a>
+                <a href="#" class="nav-trigger"><span></span></a>
+            </div>
+            <div class="side-nav">
+                <div class="logo">
+                    <i class="fa fa-tachometer"></i>
+                    <span>Dashboard</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li class="active">
+                            <a href="#">
+                                <span><i class="pi pi-home"></i></span>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="createAcademicD.xhtml">
+
+                                <span><i class="pi pi-file"></i></span>
+                                <span>addMajors</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="createAddress.xhtml">
+                                <span><i class="fa fa-bar-chart"></i></span>
+                                <span>addAddress</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="applicants.xhtml">
+                                <span><i class="fa fa-credit-card-alt"></i></span>
+                                <span>Approve</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="approvedList.xhtml">
+                                <span><i class="fa fa-credit-card-alt"></i></span>
+                                <span>ApprovedStudents</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="main-content">
+                <div class="title">
+                    Analytics
+                </div>
+                <div class="main">
+                    <div class="widget">
+                        <div class="title">Gender chart</div>
+                        <div class="chart">
+                            <p:panel>
+                                <p:chart type="pie" model="#{chart.pie}"/>
+                            </p:panel>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <div class="title">program chart</div>
+                        <div class="chart">
+                            <p:panel>
+                                <p:chart type="pie" model="#{chart.pie1}"/>
+                            </p:panel>
+                        </div>
+                    </div>
+                    <div class="widget" id="widget3">
+                        <div class="title">Number of approved students</div>
+                        <div class="chart" id="chart3">
+                            <span id="numberofStudents">#{chart.allStudent()}</span>
+                        </div>
+                        
+                        <div class="title" >number of online users</div>
+                        <div class="chart" id="chart3">
+                            <span id="numberofStudents">#{st.onlineApplicants()}</span>
+                        </div>
+                    </div>
+                    <div class="widget" id="widget4">
+                        <div class="title">table of approved students</div>
+                        <div class="chart" id="chart4">
+                            <h:form class="form-inline" style="float: right">
+                    <h:inputText value="#{st.searchKey}" class="form-control mr-sm-2" a:placeholder="search by name" style="margin: 9px;"/>
+                    <h:commandButton  class="btn btn-success" type="submit" value="search" action="#{st.search()}"/>
+                </h:form>
+                <h:dataTable var="p" value="#{st.approvedStudents}" class="table table-bordered table-striped" border="2" cellspacing="2" cellpadding="2">
+                    <h:column>
+                        <f:facet name="header">firstName</f:facet>
+                        <h:outputText value="#{p.firstName}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">lastName</f:facet>
+                        <h:outputText value="#{p.lastName}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Program</f:facet>
+                        <h:outputText value="#{p.academicProgram}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">gender</f:facet>
+                        <h:outputText value="#{p.gender}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">MartialStatus</f:facet>
+                        <h:outputText value="#{p.status}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">province</f:facet>
+                        <h:outputText value="#{p.district.province.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">District</f:facet>
+                        <h:outputText value="#{p.district.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Faculty</f:facet>
+                        <h:outputText value="#{p.department.faculty.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Department</f:facet>
+                        <h:outputText value="#{p.department.name}"/>
+                    </h:column>  
+                </h:dataTable>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
